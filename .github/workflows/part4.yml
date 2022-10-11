@@ -1,0 +1,59 @@
+# This file is not to be altered in any way.  If you run out of time, its because you have an implemenation flaw
+
+name: Part 4
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+    paths:
+      - 'majorityelement.cpp'
+      
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'majorityelement.cpp'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          path: ./assignment
+
+
+      - name: Checkout Tester
+        uses: actions/checkout@v2
+        with:
+          repository: seneca-testers/testers
+          token: ${{ secrets.TESTER_ACCESS }}
+          path: ./tester
+
+      - name: Copy tester files
+        run: cp ./tester/btp500/f2022/a1q4tester.cpp ./
+
+      - name: Copy assignment files
+        run: cp ./assignment/majorityelement.cpp ./
+
+      - name: Copy timer files files
+        run: cp ./tester/timer.* ./
+
+      # Runs a single command using the runners shell
+      - name: Compile
+        run: c++ a1q4tester.cpp majorityelement.cpp timer.cpp -std=c++0x -o part4
+
+      # Runs a set of commands using the runners shell
+      - name: Run
+        run: timeout 20 ./part4
+ 
