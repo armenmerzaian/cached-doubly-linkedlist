@@ -1,1 +1,12 @@
-![Open in Codespaces](https://classroom.github.com/assets/open-in-codespaces-abfff4d4e15f9e1bd8274d9a39a0befe03a0632bb0f153d0ec72ff541cedbe34.svg)
+# Cached Doubly Linked List
+
+## Outcomes
+
+In this assignment I be implemented:
+- a caching doubly linked list.
+- draw diagrams of your implementation in order to gain a better insight as to how it was accomplished.
+- wrote a more involved recursive function (separate problem from linked list)
+- analyzed a more involved recursive functon
+
+## Credits
+In collaboration with [Jacky Dai](https://www.linkedin.com/in/jacky-dai-29620022b/)
